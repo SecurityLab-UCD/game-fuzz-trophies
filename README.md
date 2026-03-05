@@ -12,9 +12,9 @@ Bugs found by [game-fuzz](https://github.com/SecurityLab-UCD/game-fuzz), a cover
 
 ## Summary
 
-| Game | Source                                                            | Language | Bugs |
-| ---- | ----------------------------------------------------------------- | -------- | ---- |
-| zel  | [zel](https://github.com/superjer/tinyc.games/tree/main/zel-game) | C        | 2    |
+| Game                                                              | Language | Bugs |
+| ----------------------------------------------------------------- | -------- | ---- |
+| [zel](https://github.com/superjer/tinyc.games/tree/main/zel-game) | C        | 2    |
 
 ## zel
 
