@@ -4,23 +4,23 @@ Bugs found by [game-fuzz](https://github.com/SecurityLab-UCD/game-fuzz), a cover
 
 ## Status Legend
 
-| Symbol | Meaning |
-|--------|---------|
-| ✅ | Confirmed, not yet reported upstream |
-| 📬 | Reported upstream |
-| 🔧 | Fixed upstream |
+| Symbol | Meaning                              |
+| ------ | ------------------------------------ |
+| ✅     | Confirmed, not yet reported upstream |
+| 📬     | Reported upstream                    |
+| 🔧     | Fixed upstream                       |
 
 ## Summary
 
-| Game | Source | Language | Bugs |
-|------|--------|----------|------|
-| zel-d | [EYH0602/zel-d](https://github.com/EYH0602/zel-d) | C | 1 |
+| Game | Source                                                            | Language | Bugs |
+| ---- | ----------------------------------------------------------------- | -------- | ---- |
+| zel  | [zel](https://github.com/superjer/tinyc.games/tree/main/zel-game) | C        | 1    |
 
-## zel-d
+## zel
 
-| # | Bug ID | Type | Description | Location | Repro | Median TTF | Status |
-|---|--------|------|-------------|----------|-------|------------|--------|
-| 1 | `7b589be6` | UBSan | array index out of bounds (`int[11][15]`) | `player.c:191` in `update_player()` | 5/5 | 9.1m | ✅ |
+| #   | Bug ID     | Type  | Description                               | Location                            | Repro | Median TTF | Status |
+| --- | ---------- | ----- | ----------------------------------------- | ----------------------------------- | ----- | ---------- | ------ |
+| 1   | `7b589be6` | UBSan | array index out of bounds (`int[11][15]`) | `player.c:191` in `update_player()` | 5/5   | 9.1m       | ✅     |
 
 <details>
 <summary>Bug 1 — full stack trace</summary>
