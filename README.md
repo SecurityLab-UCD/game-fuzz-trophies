@@ -18,9 +18,10 @@ Bugs found by [game-fuzz](https://github.com/SecurityLab-UCD/game-fuzz), a cover
 
 ## zel
 
-| #   | Bug ID     | Type  | Description                               | Location                            | Repro | Median TTF | Status |
-| --- | ---------- | ----- | ----------------------------------------- | ----------------------------------- | ----- | ---------- | ------ |
-| 1   | `7b589be6` | UBSan | array index out of bounds (`int[11][15]`) | `player.c:191` in `update_player()` | 5/5   | 9.1m       | ✅     |
+| #   | Bug ID     | Type  | Description                                   | Location                            | Repro | Median TTF | Status |
+| --- | ---------- | ----- | --------------------------------------------- | ----------------------------------- | ----- | ---------- | ------ |
+| 1   | `7b589be6` | UBSan | array index out of bounds (`int[11][15]`)     | `player.c:191` in `update_player()` | 5/5   | 9.1m       | ✅     |
+| 2   | `43d78e29` | LSan  | memory leak (1.4 MB leaked in 21 allocations) | `zel.c:204` in `setup()`            | 5/5   | 5.1h       | ✅     |
 
 <details>
 <summary>Bug 1 — full stack trace</summary>
@@ -43,8 +44,6 @@ SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior player.c:191:13
 - **Date:** 2026-02-25
 
 </details>
-
-| 2 | `43d78e29` | LSan | memory leak (1.4 MB leaked in 21 allocations) | `zel.c:204` in `setup()` | 5/5 | 5.1h | ✅ |
 
 <details>
 <summary>Bug 2 — full stack trace</summary>
