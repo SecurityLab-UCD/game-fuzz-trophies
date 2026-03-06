@@ -14,7 +14,39 @@ Bugs found by [game-fuzz](https://github.com/SecurityLab-UCD/game-fuzz), a cover
 
 | Game                                                              | Language | Bugs |
 | ----------------------------------------------------------------- | -------- | ---- |
+| [pacman](https://github.com/MichaelSakowski/pacman)               | C++      | 1    |
 | [zel](https://github.com/superjer/tinyc.games/tree/main/zel-game) | C        | 2    |
+
+## pacman
+
+| #   | Bug ID     | Type  | Description                          | Location                               | Repro | Median TTF | Status |
+| --- | ---------- | ----- | ------------------------------------ | -------------------------------------- | ----- | ---------- | ------ |
+| 1   | `4765e56d` | UBSan | left shift of negative value (`-23`) | `figur.cpp:27` in `Figur::move_left()` | 5/5   | 13.7s      | ✅     |
+
+<details>
+<summary>Bug 1 — full stack trace</summary>
+
+```
+figur.cpp:27:45: runtime error: left shift of negative value -23
+    #0 0x4ed5f9 in Figur::move_left(int, int) (/usr/local/bin/pacman+0x4ed5f9)
+    #1 0x540b74 in Pacman::move_left(int, int) (/usr/local/bin/pacman+0x540b74)
+    #2 0x5c583b in FunnyAnimation::animate() (/usr/local/bin/pacman+0x5c583b)
+    #3 0x5a5998 in MenuMain::show() (/usr/local/bin/pacman+0x5a5998)
+    #4 0x52a51c in main (/usr/local/bin/pacman+0x52a51c)
+    #5 0x7c1bad1f91c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9)
+    #6 0x7c1bad1f928a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a)
+    #7 0x424ec4 in _start (/usr/local/bin/pacman+0x424ec4)
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior figur.cpp:27:45 in
+```
+
+- **Stack hash:** `4765e56dfe89692185e53b50475074f6a18ed293`
+- **Dedup method:** stack-hash (depth 3)
+- **Signal:** EXIT (exit code 1, UBSan `halt_on_error=1`)
+- **Discovery times:** 9.3s, 9.6s, 13.7s, 16.5s, 19.8s (5 runs)
+- **Found by:** `game-fuzz rand` with hierarchical scheduling, adaptive mutator
+- **Date:** 2026-03-03
+
+</details>
 
 ## zel
 
